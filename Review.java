@@ -211,5 +211,22 @@ public class Review {
     // return number of stars
         return stars; 
   }
+  public static String fakeReview(String filename){
+    String simpleReview = textToString(filename);
+    String[] splitter = review.split(" ");
+    double check = totalSentiment(review);
+    for(String word : splitter){
+      if(word.substring(0,1).equals("*"))
+      {
+        String clean = getPunctuation(word.substring(word.length()-1));
+        word = word.substring(1);
+        if(check < 0 ){word = randomPositiveAdj();}
+        else{word = randomNegativeAdj();}
+        System.out.println(word + clean + " ");
+      }
+      String final = (word + clean + " ");
+    }
+    return final.trim();
+  }
 }
 
