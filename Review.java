@@ -167,41 +167,46 @@ public class Review {
 /** Activity 2: totalSentiment()
   * Write the code to total up the sentimentVals of each word in a review.
  */
-  //public static double totalSentiment(String filename)
-  //{
+public static double totalSentiment(String filename)
+  {
     // read in the file contents into a string using the textToString method with the filename
-    //String review = textToString(fileName);
+        String review = textToString(fileName);
     // set up a sentimentTotal variable
-    //double totalSentiment = 0;
-    //int extra = 0;
+        double totalSentiment = 0;
+        int extra = 0;
     
     // loop through the file contents 
-    //String() = review.split("");
-    //for(String word){
-        //word = removePunctuation(word);
-        //double val = sentimentVal(word);
-        //totalSentiment = val;
-    //}
+        String splitter = review.split("");
+        for(String word : splitter){
+            word = removePunctuation(word);
+            double val = sentimentVal(word);
+            totalSentiment = val;
+        }
   
-    //return totalSentiment; 
-  //}
+        return totalSentiment; 
+  }
 
 
   /** Activity 2 starRating method
      Write the starRating method here which returns the number of stars for the review based on its totalSentiment.
   */
-  //public static int starRating(String filename)
-  //{
+  public static int starRating(String filename)
+  {
     // call the totalSentiment method with the fileName
-
+        double sen = Review.totalSentiment(filename);
+        double absoluteValue = Math.abs(sen);
     // determine number of stars between 0 and 4 based on totalSentiment value 
-        //int stars = 0; // change this!
+        int stars = (int)(abosluteValue * 5);
     // write if statements here
-
+         if(sentiment==0){stars=0;}
+         if(sentiment==1){stars+=1;}
+         if(sentiment==2){stars+=2;}
+         if(sentiment==3){stars+=3;}
+         if(sentiment==4){stars+=4;}
 
   
     // return number of stars
-        //return stars; 
-  //}
+        return stars; 
+  }
 }
 
