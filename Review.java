@@ -211,6 +211,21 @@ public class Review {
     // return number of stars
         return stars; 
   }
+   public static String randomPositiveAdjective()
+  {
+    int index = (int)(Math.random() * posAdjectives.size());
+    return posAdjectives.get(index);
+  }
+  
+  /** 
+   * Randomly picks a negative adjective from the negativeAdjectives.txt file and returns it.
+   */
+  public static String randomNegativeAdjective()
+  {
+    int index = (int)(Math.random() * negAdjectives.size());
+    return negAdjectives.get(index);
+    
+  }
   public static String fakeReview(String filename){
     String simpleReview = textToString(filename);
     String[] splitter = review.split(" ");
@@ -220,8 +235,8 @@ public class Review {
       {
         String clean = getPunctuation(word.substring(word.length()-1));
         word = word.substring(1);
-        if(check < 0 ){word = randomPositiveAdj();}
-        else{word = randomNegativeAdj();}
+        if(check < 0 ){word = randomPositiveAdjective();}
+        else{word = randomNegativeAdjective();}
         System.out.println(word + clean + " ");
       }
       String final = (word + clean + " ");
