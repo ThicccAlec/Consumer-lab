@@ -164,10 +164,10 @@ public class Review {
     }
   }
 
-/** Activity 2: totalSentiment()
+  /** Activity 2: totalSentiment()
   * Write the code to total up the sentimentVals of each word in a review.
  */
-public static double totalSentiment(String filename)
+  public static double totalSentiment(String filename)
   {
     // read in the file contents into a string using the textToString method with the filename
         String review = textToString(fileName);
@@ -181,9 +181,12 @@ public static double totalSentiment(String filename)
             word = removePunctuation(word);
             double val = sentimentVal(word);
             totalSentiment = val;
+            if (val != 0){
+                extra ++;
+            }
         }
   
-        return totalSentiment; 
+        return totalSentiment/extra; 
   }
 
 
@@ -193,7 +196,7 @@ public static double totalSentiment(String filename)
   public static int starRating(String filename)
   {
     // call the totalSentiment method with the fileName
-        double sen = Review.totalSentiment(filename);
+        double sen = Review.totalSentiment(fileName);
         double absoluteValue = Math.abs(sen);
     // determine number of stars between 0 and 4 based on totalSentiment value 
         int stars = (int)(abosluteValue * 5);
