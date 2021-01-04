@@ -239,9 +239,9 @@ public class Review {
         else{word = randomNegativeAdjective();}
         System.out.println(word + clean + " ");
       }
-      String final = (word + clean + " ");
+      String finalfin = (word + clean + " ");
     }
-    return final.trim();
+    return finalfin.trim();
   }
 }
 
