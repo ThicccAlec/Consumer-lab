@@ -14,7 +14,7 @@ public class Review {
   private static HashMap<String, Double> sentiment = new HashMap<String, Double>();
   private static ArrayList<String> posAdjectives = new ArrayList<String>();
   private static ArrayList<String> negAdjectives = new ArrayList<String>();
- 
+  public static String review; 
   
   private static final String SPACE = " ";
   
@@ -170,13 +170,13 @@ public class Review {
   public static double totalSentiment(String filename)
   {
     // read in the file contents into a string using the textToString method with the filename
-        String review = textToString(fileName);
+         review = textToString(filename);
     // set up a sentimentTotal variable
         double totalSentiment = 0;
         int extra = 0;
     
     // loop through the file contents 
-        String splitter = review.split("");
+        String[] splitter = review.split(" ");
         for(String word : splitter){
             word = removePunctuation(word);
             double val = sentimentVal(word);
@@ -196,16 +196,17 @@ public class Review {
   public static int starRating(String filename)
   {
     // call the totalSentiment method with the fileName
-        double sen = Review.totalSentiment(fileName);
+        double sen = Review.totalSentiment(filename);
         double absoluteValue = Math.abs(sen);
     // determine number of stars between 0 and 4 based on totalSentiment value 
-        int stars = (int)(abosluteValue * 5);
+        int stars = (int)(absoluteValue * 5);
     // write if statements here
-         if(sentiment==0){stars=0;}
-         if(sentiment==1){stars+=1;}
-         if(sentiment==2){stars+=2;}
-         if(sentiment==3){stars+=3;}
-         if(sentiment==4){stars+=4;}
+         if(sen == 0){stars=0;}
+         else if(sen == 1){stars+=1;}
+         else if(sen == 2){stars+=2;}
+         else if(sen == 3){stars+=3;}
+         else if(sen == 4){stars+=4;}
+         else System.out.print("");
 
   
     // return number of stars
@@ -230,16 +231,17 @@ public class Review {
     String simpleReview = textToString(filename);
     String[] splitter = review.split(" ");
     double check = totalSentiment(review);
+    String finalfin = " ";
     for(String word : splitter){
+      String clean = getPunctuation(word.substring(word.length()-1));
       if(word.substring(0,1).equals("*"))
       {
-        String clean = getPunctuation(word.substring(word.length()-1));
         word = word.substring(1);
         if(check < 0 ){word = randomPositiveAdjective();}
         else{word = randomNegativeAdjective();}
         System.out.println(word + clean + " ");
       }
-      String finalfin = (word + clean + " ");
+      finalfin = (word + clean + " ");
     }
     return finalfin.trim();
   }
